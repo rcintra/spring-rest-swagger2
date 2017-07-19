@@ -12,6 +12,11 @@ public class Student {
 	
     @ApiModelProperty(notes = "Country of the Student",name="country",required=true,value="test country")
 	private String country;
+    
+    public Student(String name) {
+		super();
+		this.name = name;
+	}
 
 	public Student(String name, String cls, String country) {
 		super();
@@ -48,4 +53,30 @@ public class Student {
 	public String toString() {
 		return "Student [name=" + name + ", cls=" + cls + ", country=" + country + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
 }

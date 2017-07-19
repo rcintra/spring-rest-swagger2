@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rcintra.springrestswagger2.exception.StudentNotFoundException;
 import com.rcintra.springrestswagger2.model.Student;
 
 import io.swagger.annotations.Api;
@@ -42,7 +43,10 @@ public class Swagger2DemoRestController {
     @ApiOperation(value = "Get specific Student in the System ", response = Student.class, tags = "getStudent")
     @RequestMapping(value = "/getStudent/{name}")
     public Student getStudent(@PathVariable(value = "name") String name) {
-        return students.stream().filter(x -> x.getName().equalsIgnoreCase(name)).collect(Collectors.toList()).get(0);
+    	if (students.contains(new Student(name))){
+    		return students.stream().filter(x -> x.getName().equalsIgnoreCase(name)).collect(Collectors.toList()).get(0);
+    	}
+    	throw new StudentNotFoundException();
     }
  
     @ApiOperation(value = "Get specific Student By Country in the System ", response = Student.class, tags = "getStudentByCountry")
