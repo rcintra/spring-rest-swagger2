@@ -1,4 +1,5 @@
 # spring-rest-swagger2
+http://howtodoinjava.com/swagger2/swagger-spring-mvc-rest-example/
 
 # steps
 echo "# spring-rest-swagger2" >> README.md
